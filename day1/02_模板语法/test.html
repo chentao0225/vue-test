@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test">
+        <h2>双大括号表达式</h2>
+        <p>{{msg}}</p>
+        <p>{{msg.toUpperCase()}}</p>
+       
+        <h2>指令1：强制数据绑定</h2>
+        <a href="url">访问指定站点</a><br>
+        <a v-bind:href="url">访问指定站点2</a><br>
+        <a :href="url">访问指定站点3</a>
+
+        <h2>指定2：绑定事件监听</h2>
+        <button v-on:click="test1">点我1</button>
+        <button @click='test1'>点我2</button>
+        <button v-on:click="test2('hello,sun')">点我3</button>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#test',
+            data:{
+                msg:'NBA I Love This Game!',
+                url:'http://www.baidu.com'
+            },
+            methods:{
+                test1(event){
+                    alert(event.target.innerText)
+                },
+                test2(msg){
+                    alert(msg)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <input type="text" v-model="searchName">
+        <ul>
+            <li v-for="(item, index) in filterPersons" :key="item.id">
+                 {{index}}---{{item.id}}---{{item.name}}---{{item.age}}
+            </li>
+        </ul>
+        <button @click="orderType=3">年龄升序</button>
+        <button @click="orderType=1">年龄降序</button>
+        <button @click="orderType=2">原本顺序</button>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#demo',
+            data: {
+                persons: [{
+                        id: 1,
+                        name: 'Tom',
+                        age: 15
+                    },
+                    {
+                        id: 2,
+                        name: 'Jack',
+                        age: 13
+                    },
+                    {
+                        id: 4,
+                        name: 'Bob',
+                        age: 16
+                    },
+                    {
+                        id: 5,
+                        name: 'Jerry',
+                        age: 12
+                    },
+                    {
+                        id: 7,
+                        name: 'Cat',
+                        age: 11
+                    },
+                ],
+                searchName:'',
+                orderType:2,//排序的类型 2原本排序 1降序 3升序
+            },
+            computed:{
+                filterPersons(){
+                    const {persons,searchName,orderType}=this
+                    const arr=persons.filter((item,index)=>item.name.indexOf(searchName)!==-1)
+                    if(orderType!==2){
+                        if(orderType==3){
+                            arr.sort((p1,p2)=>{
+                                return p1.age-p2.age
+                            })
+                        }else{
+                            arr.sort((p1,p2)=>{
+                                return p2.age-p1.age
+                            })
+                        }
+                    }
+                    return arr
+                }
+            }
+            
+        })
+    </script>
+</body>
+
+</html>
