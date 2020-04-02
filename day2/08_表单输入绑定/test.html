@@ -36,7 +36,7 @@
             <span>介绍: </span>
             <textarea rows="10" v-model="user.info"></textarea><br><br>
         
-            <input type="submit" value="注册" @click='submit'>
+            <input type="submit" value="注册" @click.prevent='submit'>
         </form>
     </div>
     <script src="../../js/vue.js"></script>
