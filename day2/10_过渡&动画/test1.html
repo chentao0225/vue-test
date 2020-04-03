@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 5s;
+        }
+
+        .fade-enter,
+        .fade-leave-to
+
+        /* .fade-leave-active 在低于版本 2.1.8 中 */
+            {
+            opacity: 0;
+        }
+        /*显示过渡的样式*/
+        .move-enter-active{
+            background-color: skyblue;
+            transition:all 2s;
+        }
+        /*隐藏过渡的样式*/
+        .move-leave-active{
+            background-color: springgreen;
+            transition:all 6s;
+        }
+        /*开始结束的样式*/
+        .move-enter,.move-leave-to{
+            opacity:0;
+            transform:translateX(50px);
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <button v-on:click="show = !show">
+            Toggle
+        </button>
+        <transition name="fade">
+            <p v-if="show">hello</p>
+        </transition>
+    </div>
+    <div id="demo2">
+        <button v-on:click="show = !show">
+            Toggle
+        </button>
+        <transition name="move">
+            <p v-if="show">hello</p>
+        </transition>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#demo',
+            data: {
+                show: true
+            }
+        })
+        new Vue({
+            data:{
+                show:true
+            }
+        }).$mount('#demo2')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义指令</title>
+</head>
+<body>
+    <div id="test">
+        <p v-upper-text='msg'>{{msg}}</p>
+        <p v-lower-text='msg'>{{msg}}</p>
+
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        Vue.directive('upper-text',function(el,binding){
+            console.log(el,binding)
+            el.innerText=binding.value.toUpperCase()
+        })
+        new Vue({
+            el:'#test',
+            data:{
+                msg:'CBA I Love This Game!'
+            },
+            directives:{
+                'lower-text'(el,binding){
+                    console.log(el,binding)
+                    el.textContent=binding.value.toLowerCase()
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -26,27 +26,26 @@
     <div id="demo">
         <button @click="destroyVM">destory vm</button>
         <p v-show="isShow">hello vue</p>
-        <p>{{msg}}</p>
+        <p ref="content">{{isShow?'真':'假'}}</p>
     </div>
-    <p>{{isShow}}</p>
     <script src="../../js/vue.js"></script>
     <script>
         new Vue({
             el:'#demo',
             data:{
-                isShow:true,
-                msg:'sun'
+                isShow:true
             },
             beforeCreate(){
-              console.log('beforeCreate',this.msg)
+              console.log('beforeCreate',this.isShow)
             },
             created(){
-              console.log('created',this.msg)
+              console.log('created',this.isShow)
             },
             beforeMount() {
-              console.log('beforeMount')
+              console.log('beforeMount',this.$refs.content)
             },
             mounted(){
+              console.log('mounted',this.$refs.content)
                 this.timeId=setInterval(()=>{
                   console.log('-----')
                   this.isShow=!this.isShow
@@ -54,12 +53,13 @@
                 ,1000)
             },
             beforeUpdate() {
-              console.log('beforeUpdate')
+              console.log('beforeUpdate', this.isShow, this.$refs.content.innerText)
             },
             updated() {
-              console.log('updated')
+              console.log('updated', this.isShow, this.$refs.content.innerText)
             },
             beforeDestroy() {
+              console.log('beforeDestroy')
               clearInterval(this.timeId)
             },
             destroyed(){
